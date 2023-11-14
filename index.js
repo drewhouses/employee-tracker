@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const Query = require("./query");
+const Query = require("./dbquery");
 
 function init() {
   inquirer
@@ -49,7 +49,6 @@ function init() {
           dbRequest.fetch();
           break;
         case 2:
-          // Do 2 code
           dbRequest = new Query("role", "*");
           dbRequest.fetch();
           break;
@@ -67,17 +66,76 @@ function init() {
               },
             ])
             .then((response) => {
-              query = new Query("department", `*`);
-              query.update(response.answer);
+              dbRequest = new Query("department", `name`);
+              dbRequest.put(`"${response.answer}"`);
             });
           break;
         case 5:
-          // Do 5 code
-          //
+          inquirer
+            .prompt([
+              {
+                type: "input",
+                message: "Enter the role's title:",
+                name: "title",
+              },
+              {
+                type: "input",
+                message: "Enter the new role's salary:",
+                name: "salary",
+              },
+              {
+                type: "input",
+                message: "Enter the role's department ID:",
+                name: "department",
+              },
+            ])
+            .then((response) => {
+              dbRequest = new Query("role", [
+                "title",
+                "salary",
+                "department_id",
+              ]);
+              dbRequest.put(
+                `"${response.title}", "${response.salary}", "${response.department}"`
+              );
+            });
           break;
         case 6:
-          // Do 6 code
-          //
+          inquirer
+            .prompt([
+              {
+                type: "input",
+                message: "Employee first name:",
+                name: "firstName",
+              },
+              {
+                type: "input",
+                message: "Employee last name:",
+                name: "lastName",
+              },
+              {
+                type: "input",
+                message: "Employee's role:",
+                name: "role",
+              },
+              {
+                type: "input",
+                message: "Employee's manager",
+                name: "manager",
+              },
+            ])
+            .then((response) => {
+              dbRequest = new Query("employee", [
+                "first_name",
+                "last_name",
+                "role_id",
+                "manager_id",
+              ]);
+              console.log(response);
+              dbRequest.put(
+                `"${response.firstName}", "${response.lastName}", "${response.role}", "${response.manager}"`
+              );
+            });
           break;
         case 7:
           // Do 7 code
