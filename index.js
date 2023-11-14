@@ -42,8 +42,6 @@ function init() {
       },
     ])
     .then((response) => {
-      console.log(typeof response.userChoice);
-      let dbRequest;
       switch (response.userChoice) {
         case 1: // View All Departments
           promptViewDept();
@@ -170,13 +168,16 @@ function promptAddEmployee() {
 
 function promptUpdateEmployee() {
   const employeeList = new DBQuery("employee", "*");
+  const roleList = new DBQuery("role", "*");
+
   employeeList.fetch();
+  roleList.fetch();
   setTimeout(function () {
     inquirer
       .prompt([
         {
           type: "input",
-          message: "Enter the ID of the employee you want to update",
+          message: "Enter the ID of the employee you want to update:",
           name: "employeeChoice",
         },
         {
@@ -186,7 +187,9 @@ function promptUpdateEmployee() {
         },
       ])
       .then((response) => {
-        console.log(response);
+        //
+        const query = new DBQuery("employee", "*");
+        query.post(`role_id = ${response.roleChoice}`, response.employeeChoice);
       });
   }, 500);
   // inquirer

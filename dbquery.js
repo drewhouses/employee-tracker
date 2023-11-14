@@ -17,13 +17,16 @@ class DBQuery {
         password: process.env.DB_PASS,
         database: process.env.DB_NAME,
       },
-      console.log(`Connected to the Employees database.`)
+      console.log(`\n`)
     );
-
+    let tableTitle = this.table;
     db.query(
       `SELECT ${this.columns.toString()} FROM ${this.table}`,
       function (err, results) {
+        console.log(`${tableTitle.toUpperCase()} TABLE`);
+        // console.log(`${this.table} TABLE`);
         console.table(results);
+        console.log(`\n`);
       }
     );
   }
@@ -45,7 +48,7 @@ class DBQuery {
     );
   }
 
-  update(newData) {
+  post(updateData, itemToUpdate) {
     // UPDATE table_name
     // SET column1 = value1, column2 = value2, ...
     // WHERE condition;
@@ -61,9 +64,10 @@ class DBQuery {
     );
 
     db.query(
-      `UPDATE ${this.table} SET ${newData} WHERE`,
+      `UPDATE ${this.table} SET ${updateData} WHERE id=${itemToUpdate}`,
       function (err, results) {
-        console.log(results);
+        // console.log(results);
+        if (!err) console.log("Update successful!");
       }
     );
   }
