@@ -1,5 +1,4 @@
 const inquirer = require("inquirer");
-const Query = require("./dbquery");
 const DBQuery = require("./dbquery");
 
 function init() {
@@ -62,7 +61,6 @@ function init() {
           promptAddEmployee();
           break;
         case 7: //Update employee's role
-          // Do 7 code
           promptUpdateEmployee();
           break;
       }
@@ -74,6 +72,7 @@ init();
 function promptViewDept() {
   dbRequest = new DBQuery("department", "*");
   dbRequest.fetch();
+  return init();
 }
 
 function promptViewRole() {
@@ -192,67 +191,4 @@ function promptUpdateEmployee() {
         query.post(`role_id = ${response.roleChoice}`, response.employeeChoice);
       });
   }, 500);
-  // inquirer
-  //   .prompt([
-  //     {
-  //       type: "input",
-  //       message: "Enter the ID of the employee you want to update",
-  //       name: "employeeChoice",
-  //     },
-  //     {
-  //       type: "input",
-  //       message: "What Role would you like to give them?",
-  //       name: "roleChoice",
-  //     },
-  //   ])
-  //   .then((response) => {
-  //     console.log(response);
-  //   });
 }
-
-// function showMenu() {
-//   const menu = [
-//     {
-//       type: "rawlist",
-//       message: "Please select an option from the following menu:",
-//       choices: [
-//         {
-//           name: "View All Departments",
-//           value: 1,
-//         },
-//         {
-//           name: "View All Roles",
-//           value: 2,
-//         },
-//         {
-//           name: "View All Employees",
-//           value: 3,
-//         },
-//         {
-//           name: "Add a Department",
-//           value: 4,
-//         },
-//         {
-//           name: "Add a Role",
-//           value: 5,
-//         },
-//         {
-//           name: "Add an Employee",
-//           value: 6,
-//         },
-//         {
-//           name: "Update an Employee Role",
-//           value: 7,
-//         },
-//       ],
-//       name: "userChoice",
-//     },
-//   ];
-// }
-
-// const main = async () => {
-//   for (let count = 0; count < 3; count++) {
-//     await showMenu()
-//     .then()
-//   }
-// };

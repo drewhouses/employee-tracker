@@ -23,10 +23,13 @@ class DBQuery {
     db.query(
       `SELECT ${this.columns.toString()} FROM ${this.table}`,
       function (err, results) {
-        console.log(`${tableTitle.toUpperCase()} TABLE`);
-        // console.log(`${this.table} TABLE`);
-        console.table(results);
-        console.log(`\n`);
+        if (!err) {
+          console.log(`${tableTitle.toUpperCase()} TABLE`);
+          console.table(results);
+          console.log(`\n`);
+        } else {
+          console.error(err);
+        }
       }
     );
   }
@@ -43,7 +46,8 @@ class DBQuery {
       `INSERT INTO ${this.table} (${this.columns}) VALUES (${data})`,
       function (err, results) {
         // console.log(results);
-        if (!err) console.log(err);
+        if (!err) console.log("Data successfully added!");
+        else console.log(err);
       }
     );
   }
