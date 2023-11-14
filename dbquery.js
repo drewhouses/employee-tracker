@@ -40,11 +40,9 @@ class DBQuery {
       `INSERT INTO ${this.table} (${this.columns}) VALUES (${data})`,
       function (err, results) {
         // console.log(results);
-        console.log(err);
+        if (!err) console.log(err);
       }
     );
-    console.log("The columns: " + this.columns);
-    console.log("The data: " + data);
   }
 
   update(newData) {
