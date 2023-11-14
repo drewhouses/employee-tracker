@@ -171,22 +171,40 @@ function promptAddEmployee() {
 function promptUpdateEmployee() {
   const employeeList = new DBQuery("employee", "*");
   employeeList.fetch();
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        message: "Enter the ID of the employee you want to update",
-        name: "employeeChoice",
-      },
-      {
-        type: "input",
-        message: "What Role would you like to give them?",
-        name: "roleChoice",
-      },
-    ])
-    .then((response) => {
-      console.log(response);
-    });
+  setTimeout(function () {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          message: "Enter the ID of the employee you want to update",
+          name: "employeeChoice",
+        },
+        {
+          type: "input",
+          message: "What Role would you like to give them?",
+          name: "roleChoice",
+        },
+      ])
+      .then((response) => {
+        console.log(response);
+      });
+  }, 500);
+  // inquirer
+  //   .prompt([
+  //     {
+  //       type: "input",
+  //       message: "Enter the ID of the employee you want to update",
+  //       name: "employeeChoice",
+  //     },
+  //     {
+  //       type: "input",
+  //       message: "What Role would you like to give them?",
+  //       name: "roleChoice",
+  //     },
+  //   ])
+  //   .then((response) => {
+  //     console.log(response);
+  //   });
 }
 
 // function showMenu() {
