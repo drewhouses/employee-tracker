@@ -21,6 +21,3 @@ VALUES ("Bob", "Davis", 1, 1),
        ("Dan", "MaJam", 4, 2),
        ("Eli", "Tristan", 2, 3),
        ("Trini", "Gaytan", 3, 4);
-
-
-INSERT INTO employee (first_name,last_name,role_id,manager_id) VALUES ("")

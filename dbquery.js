@@ -49,10 +49,6 @@ class DBQuery {
   }
 
   post(updateData, itemToUpdate) {
-    // UPDATE table_name
-    // SET column1 = value1, column2 = value2, ...
-    // WHERE condition;
-
     const db = mysql.createConnection(
       {
         host: process.env.DB_HOST,
@@ -73,7 +69,7 @@ class DBQuery {
   }
 
   delete() {
-    //
+    // BONUS
   }
 }
 
