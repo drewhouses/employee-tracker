@@ -78,11 +78,13 @@ function promptViewDept() {
 function promptViewRole() {
   dbRequest = new DBQuery("role", "*");
   dbRequest.fetch();
+  return init();
 }
 
 function promptViewEmployee() {
   dbRequest = new DBQuery("employee", "*");
   dbRequest.fetch();
+  return init();
 }
 
 function promptAddDept() {
@@ -98,6 +100,7 @@ function promptAddDept() {
       dbRequest = new DBQuery("department", `name`);
       dbRequest.put(`"${response.answer}"`);
     });
+  return init();
 }
 
 function promptAddRole() {
@@ -125,6 +128,7 @@ function promptAddRole() {
         `"${response.title}", "${response.salary}", "${response.department}"`
       );
     });
+  return init();
 }
 
 function promptAddEmployee() {
@@ -163,6 +167,7 @@ function promptAddEmployee() {
         `"${response.firstName}", "${response.lastName}", "${response.role}", "${response.manager}"`
       );
     });
+  return init();
 }
 
 function promptUpdateEmployee() {
@@ -186,9 +191,10 @@ function promptUpdateEmployee() {
         },
       ])
       .then((response) => {
-        //
         const query = new DBQuery("employee", "*");
         query.post(`role_id = ${response.roleChoice}`, response.employeeChoice);
       });
   }, 500);
+  return init();
 }
+2;
