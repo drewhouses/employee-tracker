@@ -100,7 +100,6 @@ function promptAddDept() {
       dbRequest = new DBQuery("department", `name`);
       dbRequest.put(`"${response.answer}"`);
     });
-  return init();
 }
 
 function promptAddRole() {
@@ -128,7 +127,6 @@ function promptAddRole() {
         `"${response.title}", "${response.salary}", "${response.department}"`
       );
     });
-  return init();
 }
 
 function promptAddEmployee() {
@@ -167,7 +165,6 @@ function promptAddEmployee() {
         `"${response.firstName}", "${response.lastName}", "${response.role}", "${response.manager}"`
       );
     });
-  return init();
 }
 
 function promptUpdateEmployee() {
@@ -195,5 +192,4 @@ function promptUpdateEmployee() {
         query.post(`role_id = ${response.roleChoice}`, response.employeeChoice);
       });
   }, 500);
-  return init();
 }
