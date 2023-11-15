@@ -197,4 +197,3 @@ function promptUpdateEmployee() {
   }, 500);
   return init();
 }
-2;
